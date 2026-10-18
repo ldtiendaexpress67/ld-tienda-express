@@ -22,7 +22,20 @@
     </style>
 </head>
 <body>
-    <!-- Pega tu enlace web de Google Apps Script abajo entre las comillas -->
-    <iframe src="https://script.google.com/macros/s/AKfycbzqemxN-Gn056kMh5xU8FCRoYT3hbH4hB2mPudA06w005l9cdv3AvWhiD5ioHFykbDSgw/exec" allow="clipboard-write"></iframe>
+    <!-- Iframe con tu enlace web oficial de Google Apps Script (que termina en /exec) -->
+    <iframe id="tiendaFrame" src="https://script.google.com/macros/s/AKfycbyc9b2wQ-3qj_K5d0k5.../exec" allow="clipboard-write"></iframe>
+
+    <script>
+        // Script inteligente para capturar parámetros de GitHub y enviarlos al iframe
+        window.addEventListener('DOMContentLoaded', () => {
+            const queryString = window.location.search;
+            if (queryString) {
+                const iframe = document.getElementById('tiendaFrame');
+                const baseUrl = iframe.getAttribute('src');
+                // Añade los parámetros de la URL al Apps Script de forma dinámica
+                iframe.setAttribute('src', baseUrl + queryString);
+            }
+        });
+    </script>
 </body>
 </html>
